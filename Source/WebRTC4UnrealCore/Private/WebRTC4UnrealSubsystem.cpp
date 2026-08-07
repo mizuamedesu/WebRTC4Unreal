@@ -441,6 +441,16 @@ void UWebRTC4UnrealSubsystem::StartAutomationIfReady()
 		Configuration.Endpoint = AutomationProviderEndpoint;
 		Configuration.Options.Add(TEXT("SessionBroker"), TEXT("true"));
 		Configuration.Options.Add(TEXT("AccessKey"), AutomationAccessKey);
+		if (FParse::Param(FCommandLine::Get(), TEXT("WebRTC4UnrealForceCloudflareFallback")))
+		{
+			Configuration.Options.Add(TEXT("ForceCloudflareFallback"), TEXT("true"));
+		}
+		FString FallbackTimeout;
+		if (FParse::Value(FCommandLine::Get(),
+			TEXT("WebRTC4UnrealFallbackTimeoutSeconds="), FallbackTimeout))
+		{
+			Configuration.Options.Add(TEXT("FallbackTimeoutSeconds"), FallbackTimeout);
+		}
 		ConfigureProvider(ProviderName, Configuration);
 	}
 

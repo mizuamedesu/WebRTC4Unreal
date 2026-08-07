@@ -13,3 +13,9 @@ DerivedDataCache/
 *.user
 *.env
 .env
+node_modules/
+.wrangler/
+.dev.vars
+*.cpuprofile
+*.log
+Backend/Worker/worker-configuration.d.ts
