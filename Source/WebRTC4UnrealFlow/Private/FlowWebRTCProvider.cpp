@@ -143,6 +143,12 @@ void FFlowWebRTCProvider::SendBackendRequest(const FString& Path, FHttpCallback 
 	{
 		Request->SetHeader(TEXT("X-P2P-Bootstrap-Key"), BootstrapKey);
 	}
+	const FString RequestedParticipantId =
+		Configuration.Options.FindRef(TEXT("RequestedParticipantId"));
+	if (!RequestedParticipantId.IsEmpty())
+	{
+		Request->SetHeader(TEXT("X-WebRTC4Unreal-Participant-Id"), RequestedParticipantId);
+	}
 	Request->OnProcessRequestComplete().BindLambda(
 		[SharedCallback](FHttpRequestPtr, FHttpResponsePtr Response, bool bSucceeded)
 		{

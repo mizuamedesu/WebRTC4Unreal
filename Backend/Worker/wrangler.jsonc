@@ -1,0 +1,54 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "webrtc4unreal-realtime",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-07",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "vars": {
+    "CALLS_API_BASE": "https://rtc.live.cloudflare.com/v1",
+    "TURN_API_BASE": "https://rtc.live.cloudflare.com/v1/turn",
+    "FLOW_API_BASE_URL": "https://flow.heterocloud.mizuame.app",
+    "HCF_CREDENTIAL_ENDPOINT": "https://heterocloud.mizuame.app/api/v1/flow/v1/access-credentials",
+    "FLOW_TOKEN_TTL_SECONDS": "300",
+    "ROOM_TTL_SECONDS": "21600",
+    "TURN_TTL_SECONDS": "21600"
+  },
+  "secrets": {
+    "required": [
+      "CLIENT_ACCESS_KEY",
+      "HCF_DEVELOPER_CREDENTIAL",
+      "TURN_KEY_ID",
+      "TURN_KEY_API_TOKEN"
+    ]
+  },
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "ROOMS",
+        "class_name": "RealtimeRoom"
+      },
+      {
+        "name": "P2P_ROOMS",
+        "class_name": "DirectRoom"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["RealtimeRoom"]
+    },
+    {
+      "tag": "v2",
+      "new_sqlite_classes": ["DirectRoom"]
+    }
+  ],
+  "observability": {
+    "enabled": true,
+    "logs": {
+      "enabled": true,
+      "invocation_logs": true
+    }
+  }
+}

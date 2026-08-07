@@ -1,0 +1,24 @@
+{
+  "name": "webrtc4unreal-realtime-worker",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "types": "wrangler types --env-interface CloudflareBindings",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "check": "npm run types && npm run typecheck && npm test && wrangler deploy --dry-run && wrangler check startup"
+  },
+  "overrides": {
+    "undici": "7.29.0"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-pool-workers": "0.20.2",
+    "@types/node": "^26.1.2",
+    "typescript": "7.0.2",
+    "vitest": "4.1.10",
+    "wrangler": "^4.119.0"
+  }
+}

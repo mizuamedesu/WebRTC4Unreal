@@ -3,7 +3,7 @@
 	"Version": 2,
 	"VersionName": "2.0.0",
 	"FriendlyName": "WebRTC4Unreal",
-	"Description": "Provider-neutral Unreal listen-server transport with Blueprint APIs and a HeteroCloud Flow adapter.",
+	"Description": "Provider-neutral Unreal listen-server transport with Blueprint APIs, HeteroCloud Flow, and Cloudflare Realtime adapters.",
 	"Category": "Networking",
 	"CreatedBy": "WebRTC4Unreal",
 	"CanContainContent": false,
@@ -17,6 +17,11 @@
 		},
 		{
 			"Name": "WebRTC4UnrealFlow",
+			"Type": "Runtime",
+			"LoadingPhase": "PreDefault"
+		},
+		{
+			"Name": "WebRTC4UnrealCloudflareRealtime",
 			"Type": "Runtime",
 			"LoadingPhase": "PreDefault"
 		}
